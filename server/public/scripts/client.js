@@ -23,9 +23,9 @@ const toDoTableBody = document.getElementById('toDoHome')
 toDoTableBody.innerHTML = '';
 
 for (let todo of listOfToDos){
-  let completedToDO = 'Complete';
+  let completedToDO = 'NOT DONE';
   if( todo.isComplete ){
-    completedToDO = 'NOT DONE';
+    completedToDO = 'Complete';
   }
 toDoTableBody.innerHTML += (`
     <tr data-testid="toDoItem">
@@ -41,7 +41,7 @@ function addTodo(event) {
 event.preventDefault();
 console.log("Submit button pressed")
 // Get info to send to the server
-const toDoToSend = {
+  const toDoToSend = {
   text: document.getElementById('toDo').value,
   isComplete: false
 }
@@ -80,16 +80,15 @@ function deleteToDo( id ){
   });
 }
 
-function updateStatus( id , isComplete ){
+function updateStatus( id , status ){
 console.log("in update to-do Status")
 const toDoToSend = {
   id: id,
-  newStatus: true
+  newStatus: status
 };
-if( isComplete ){
-  toDoToSendToSend.newStatus = false;
-}
-
+ if( status ){
+   toDoToSend.newStatus = true;
+ }
 // Send the new artist to the server as data
 axios({
   method: 'PUT',
@@ -99,7 +98,7 @@ axios({
   console.log(response.data);
   getTodos();
 }).catch(function(error) {
-  console.log('error in artist update', error); 
-  alert('Error updating artist. Please try again later.')       
+  console.log('error in to-do update', error); 
+  alert('Error updating to-do. Please try again later.')       
 });
 }

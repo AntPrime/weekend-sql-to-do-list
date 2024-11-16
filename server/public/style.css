@@ -1,0 +1,36 @@
+table {
+    border: 1px solid;
+    border-collapse: separate;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 80%;
+  }
+
+  thead {
+    background-color: lightgrey;
+    border: 1px;
+    text-align: left;
+  }
+  tr:nth-child(even) {background-color: tan;}
+  /* Got this while looking stuff up on W3 schools */
+  tr:hover {background-color: teal;}
+
+  th, td {
+    padding: 12px 15px;
+  }
+
+  tbody {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body{
+    background-color: rgb(26, 156, 143);
+  }
+
+  .completeME {
+    background-color: red;
+  }
