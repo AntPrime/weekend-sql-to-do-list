@@ -31,8 +31,8 @@ table {
     background-color: rgb(26, 156, 143);
   }
 
-  .completeME {
-    background-color: red;
+  .completed {
+    background-color: green;
   }
 
   .updated-class {

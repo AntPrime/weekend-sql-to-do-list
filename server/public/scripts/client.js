@@ -29,9 +29,9 @@ for (let todo of listOfToDos){
    
   }
 toDoTableBody.innerHTML += (`
-    <tr data-testid="toDoItem">
+    <tr  data-testid="toDoItem">
         <td>${todo.text}</td>
-        <td><button class="completeMe" data-testid="completeButton" onClick="updateStatus(${todo.id},${todo.isComplete})">${completedToDO}</td>
+        <td class="completed"><button data-testid="completeButton" onClick="updateStatus(${todo.id},${todo.isComplete})">${completedToDO}</td>
         <td><button data-testid="deleteButton" onClick="deleteToDo(${todo.id})">DELETE</td>
       </tr>
     `)
