@@ -51,21 +51,21 @@ router.delete( '/', ( req, res )=>{
 })
 
 // // PUT
-// router.put( '/', ( req, res )=>{
-//     console.log( '/artists PUT:', req.body );
-//     const queryText = `UPDATE artists SET favorite=$1 WHERE id=$2;`;
-//     const values = [ req.body.newFavorite, req.body.id ];
-//     // run pool.query
-//     pool.query( queryText, values ).then( ( results )=>{
-//         res.sendStatus( 200 ); // "OK"
-//     }).catch( ( err )=>{
-//         // handle any errors
-//         console.log( err );
-//         res.sendStatus( 400 );
-//     })
+router.put( '/', ( req, res )=>{
+    console.log( '/todo PUT:', req.body );
+    const queryText = `UPDATE todos SET isComplete=$1 WHERE id=$2;`;
+    const values = [ req.body.newStatus, req.body.id ];
+    // run pool.query
+    pool.query( queryText, values ).then( ( results )=>{
+        res.sendStatus( 200 ); // "OK"
+    }).catch( ( err )=>{
+        // handle any errors
+        console.log( err );
+        res.sendStatus( 400 );
+    })
 
 
-// })
+})
 
 
 module.exports = router;

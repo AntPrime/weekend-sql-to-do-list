@@ -30,7 +30,7 @@ for (let todo of listOfToDos){
 toDoTableBody.innerHTML += (`
     <tr data-testid="toDoItem">
         <td>${todo.text}</td>
-        <td><button class="completeMe" data-testid="completeButton" onClick="">${completedToDO}</td>
+        <td><button class="completeMe" data-testid="completeButton" onClick="updateStatus(${todo.id},${todo.isComplete})">${completedToDO}</td>
         <td><button data-testid="deleteButton" onClick="deleteToDo(${todo.id})">DELETE</td>
       </tr>
     `)
@@ -80,3 +80,26 @@ function deleteToDo( id ){
   });
 }
 
+function updateStatus( id , isComplete ){
+console.log("in update to-do Status")
+const toDoToSend = {
+  id: id,
+  newStatus: true
+};
+if( isComplete ){
+  toDoToSendToSend.newStatus = false;
+}
+
+// Send the new artist to the server as data
+axios({
+  method: 'PUT',
+  url: '/todos',
+  data: toDoToSend
+}).then(function(response) {
+  console.log(response.data);
+  getTodos();
+}).catch(function(error) {
+  console.log('error in artist update', error); 
+  alert('Error updating artist. Please try again later.')       
+});
+}
