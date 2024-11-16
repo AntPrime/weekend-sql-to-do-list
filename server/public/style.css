@@ -34,3 +34,7 @@ table {
   .completeME {
     background-color: red;
   }
+
+  .updated-class {
+    background-color: green;
+  }

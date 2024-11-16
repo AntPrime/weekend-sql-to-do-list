@@ -26,6 +26,7 @@ for (let todo of listOfToDos){
   let completedToDO = 'NOT DONE';
   if( todo.isComplete ){
     completedToDO = 'Complete';
+   
   }
 toDoTableBody.innerHTML += (`
     <tr data-testid="toDoItem">
@@ -86,9 +87,14 @@ const toDoToSend = {
   id: id,
   newStatus: status
 };
+const classToUpdate = document.querySelector('.completeME')
  if( status ){
    toDoToSend.newStatus = true;
+   classToUpdate.className = 'updated-class';
  }
+ else {
+  classToUpdate.className = 'footer'; 
+}
 // Send the new artist to the server as data
 axios({
   method: 'PUT',
