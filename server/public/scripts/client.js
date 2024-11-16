@@ -23,10 +23,15 @@ const toDoTableBody = document.getElementById('toDoHome')
 toDoTableBody.innerHTML = '';
 
 for (let todo of listOfToDos){
+  let completedToDO = 'Complete';
+  if( todo.isComplete ){
+    completedToDO = 'NOT DONE';
+  }
 toDoTableBody.innerHTML += (`
     <tr data-testid="toDoItem">
         <td>${todo.text}</td>
-        <td>${todo.isComplete}</td>
+        <td><button data-testid="completeButton" onClick="">${completedToDO}</td>
+        <td><button data-testid="deleteButton" onClick="">DELETE</td>
       </tr>
     `)
 }
@@ -38,7 +43,18 @@ console.log("Submit button pressed")
 // Get info to send to the server
 const toDoToSend = {
   text: document.getElementById('toDo').value,
-  isComplete: document.getElementById('submit-todo')
 }
-
+console.log("adding to-do item", toDoToSend)
+document.getElementById('toDo').value = ''
+axios({
+  method: 'POST',
+  url: '/todos',
+  data: toDoToSend
+}).then(function(response) {
+  console.log(response.data);
+  getTodos();
+}).catch(function(error) {
+  console.log('error in todos post', error); 
+  alert('Error adding todo. Please try again later.')       
+});
 }

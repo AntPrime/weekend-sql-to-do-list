@@ -13,7 +13,7 @@ if (process.env.NODE_ENV == 'test') {
 }
 const toDoList = [{
   text: "TEXT",
-  isComplete: true
+  isComplete: Boolean
 }]
 
 
