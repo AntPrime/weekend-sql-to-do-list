@@ -13,6 +13,22 @@
   <header>
     <h1>SQL TO-DO List</h1>
   </header>
+<h2>To-Do's listed below</h2>
+<form>
+  <input data-testid="toDoTextInput" type="text" id="toDo" placeholder="To-Do">
+  <button data-testid="submitButton" id="submit-todo" onclick="addTodo(event)">Add to list</button>
+</form>
+<table>
+  <thead>
+      <tr>
+          <th>To-Do</th>
+          <th>Status</th>
+      </tr>
+  </thead>
+  <tbody id="toDoHome" data-testid="toDoItem">
+      <!-- To Do's will go here -->
+  </tbody>
+</table>
 
 </body>
 </html>
