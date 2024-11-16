@@ -19,6 +19,7 @@ const toDoList = [{
 
 
 app.use('/todos', todos);
+
 //Creating route to GET
 app.get('/todos', (req, res) => {
   console.log(`In /todos GET`);
