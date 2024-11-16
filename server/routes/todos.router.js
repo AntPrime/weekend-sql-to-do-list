@@ -18,21 +18,21 @@ router.get( '/', ( req, res )=>{
 })
 
 // POST
-// router.post( '/', ( req, res )=>{
-//     console.log( 'in /artist POST:', req.body );
-//         // assemble query
-//         const queryText = `INSERT into "artists" ( name, birthdate ) VALUES ( $1, $2 );`;
-//         const values = [ req.body.name, req.body.birthdate ];
-//         // run pool.query
-//         pool.query( queryText, values ).then( ( results )=>{
-//             // return results.rows
-//             res.sendStatus( 201 ); // "CREATED"
-//         }).catch( ( err )=>{
-//             // handle any errors
-//             console.log( err );
-//             res.sendStatus( 400 );
-//         })
-// })
+router.post( '/', ( req, res )=>{
+    console.log( 'in /todo POST:', req.body );
+        // assemble query
+        const queryText = `INSERT into todos ( "text", "isComplete" ) VALUES ( $1, $2 );`;
+        const values = [ req.body.text, req.body.isComplete ];
+        // run pool.query
+        pool.query( queryText, values ).then( ( results )=>{
+            // return results.rows
+            res.sendStatus( 201 ); // "CREATED"
+        }).catch( ( err )=>{
+            // handle any errors
+            console.log( err );
+            res.sendStatus( 400 );
+        })
+})
 
 // DELETE
 // router.delete( '/', ( req, res )=>{

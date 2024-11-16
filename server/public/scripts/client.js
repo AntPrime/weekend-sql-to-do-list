@@ -24,10 +24,21 @@ toDoTableBody.innerHTML = '';
 
 for (let todo of listOfToDos){
 toDoTableBody.innerHTML += (`
-    <tr>
+    <tr data-testid="toDoItem">
         <td>${todo.text}</td>
         <td>${todo.isComplete}</td>
       </tr>
     `)
 }
+}
+
+function addTodo(event) {
+event.preventDefault();
+console.log("Submit button pressed")
+// Get info to send to the server
+const toDoToSend = {
+  text: document.getElementById('toDo').value,
+  isComplete: document.getElementById('submit-todo')
+}
+
 }
