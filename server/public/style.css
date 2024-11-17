@@ -28,13 +28,13 @@ table {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   body{
-    background-color: rgb(26, 156, 143);
+    background-color: darkslategrey;
   }
 
-  .completed {
+  .green {
     background-color: green;
   }
 
-  .updated-class {
-    background-color: green;
+  .red {
+    background-color: red;
   }

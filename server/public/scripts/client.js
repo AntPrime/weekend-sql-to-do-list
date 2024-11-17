@@ -23,16 +23,21 @@ const toDoTableBody = document.getElementById('toDoHome')
 toDoTableBody.innerHTML = '';
 
 for (let todo of listOfToDos){
-  let completedToDO = 'NOT DONE';
+  let completedToDO = 'NOT DONE'
+  let buttonClass = 'red'
   if( todo.isComplete ){
-    completedToDO = 'Complete';
-   
+    completedToDO = 'Complete'
+    buttonClass = 'green'
   }
 toDoTableBody.innerHTML += (`
     <tr  data-testid="toDoItem">
         <td>${todo.text}</td>
-        <td class="completed"><button data-testid="completeButton" onClick="updateStatus(${todo.id},${todo.isComplete})">${completedToDO}</td>
-        <td><button data-testid="deleteButton" onClick="deleteToDo(${todo.id})">DELETE</td>
+        <td class="completed"><button 
+        data-testid="completeButton" 
+        data-id="${todo.id}"
+        class="${buttonClass}"
+        onClick="updateStatus(${todo.id},${todo.isComplete})">${completedToDO}</button></td>
+        <td><button data-testid="deleteButton" onClick="deleteToDo(${todo.id})">DELETE</button></td>
       </tr>
     `)
 }
@@ -83,18 +88,27 @@ function deleteToDo( id ){
 
 function updateStatus( id , status ){
 console.log("in update to-do Status")
+let button = document.getElementById(`[id="completeButton"]`)
+console.log(button)
+if (button.textContent === "Complete") {
+// If it's "Complete", change it to "NOT DONE" and set color to red
+  button.textContent = "NOT DONE"
+  button.classList.remove('green') 
+  button.classList.add('red')  
+// Set status to false 
+  status = false 
+} else {
+// If it's "NOT DONE", change it to "Complete" and set color to green
+  button.textContent = "Complete"
+  button.classList.remove('red')
+  button.classList.add('green')
+// Set status to true 
+  status = true; 
+}
 const toDoToSend = {
   id: id,
   newStatus: status
 };
-const classToUpdate = document.querySelector('.completeME')
- if( status ){
-   toDoToSend.newStatus = true;
-   classToUpdate.className = 'updated-class';
- }
- else {
-  classToUpdate.className = 'footer'; 
-}
 // Send the new artist to the server as data
 axios({
   method: 'PUT',
