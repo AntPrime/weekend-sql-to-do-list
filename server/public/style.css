@@ -16,7 +16,9 @@ table {
     border: 1px;
     text-align: left;
   }
-  tr:nth-child(even) {background-color: tan;}
+  tr:nth-child(even) {background-color: tan;
+    color: black;
+  }
   /* Got this while looking stuff up on W3 schools */
   tr:hover {background-color: teal;}
 
@@ -26,6 +28,7 @@ table {
 
   tbody {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: lightgrey;
   }
   body{
     background-color: darkslategrey;

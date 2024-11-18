@@ -29,14 +29,14 @@ for (let todo of listOfToDos){
     completedToDO = 'Complete'
     buttonClass = 'completed'
   }
+// phind help me recoginze that I can add two classes in one line so that I don't override one.
 toDoTableBody.innerHTML += (`
-    <tr  data-testid="toDoItem">
+    <tr data-testid="toDoItem">
         <td>${todo.text}</td>
         <td> <button 
-        class="completeButton"
+        class="completeButton ${buttonClass}"
         data-testid="completeButton" 
         data-id="${todo.id}"
-        class="${buttonClass}"
         onClick="updateStatus(${todo.id},${todo.isComplete}, event)">${completedToDO}</button></td>
         <td><button data-testid="deleteButton" onClick="deleteToDo(${todo.id})">DELETE</button></td>
       </tr>
@@ -47,7 +47,7 @@ toDoTableBody.innerHTML += (`
 function addTodo(event) {
 event.preventDefault();
 console.log("Submit button pressed")
-// Get info to send to the server
+// get info to send to the server
   const toDoToSend = {
   text: document.getElementById('toDo').value,
   isComplete: false
@@ -92,26 +92,28 @@ console.log("in update to-do Status")
 // got some help from phind to consider the event.target as a button
 let button = event.target;
 
- console.log(button)
+// console.log(button)
 if (button.textContent === "Complete") {
-// If it's "Complete", change it to "NOT DONE" and set color to red
+// if it's "Complete", change it to "NOT DONE" and set color to red
   button.textContent = "NOT DONE"
   button.classList.remove('completed') 
   button.classList.add('red')  
 // Set status to false 
   status = false 
 } else {
-// If it's "NOT DONE", change it to "Complete" and set color to green
+// if it's "NOT DONE", change it to "Complete" and set color to green
   button.textContent = "Complete"
   button.classList.remove('red')
   button.classList.add('completed')
-// Set status to true 
+// set status to true 
   status = true; 
 }
 const toDoToSend = {
   id: id,
   isComplete: status
-};
+}
+// console logging to see what is being sent
+// console.log("Sending to server:", toDoToSend)
 // Send the new artist to the server as data
 axios({
   method: 'PUT',

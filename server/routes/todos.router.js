@@ -53,8 +53,8 @@ router.delete( '/', ( req, res )=>{
 // // PUT
 router.put( '/', ( req, res )=>{
     console.log( '/todo PUT:', req.body );
-    const queryText = `UPDATE todos SET isComplete=$1 WHERE id=$2;`;
-    const values = [ req.body.newStatus, req.body.id ];
+    const queryText = `UPDATE todos SET "isComplete"=$1 WHERE "id"=$2;`;
+    const values = [ req.body.isComplete, req.body.id ];
     // run pool.query
     pool.query( queryText, values ).then( ( results )=>{
         res.sendStatus( 200 ); // "OK"
