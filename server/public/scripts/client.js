@@ -27,16 +27,17 @@ for (let todo of listOfToDos){
   let buttonClass = 'red'
   if( todo.isComplete ){
     completedToDO = 'Complete'
-    buttonClass = 'green'
+    buttonClass = 'completed'
   }
 toDoTableBody.innerHTML += (`
     <tr  data-testid="toDoItem">
         <td>${todo.text}</td>
-        <td class="completed"><button 
+        <td> <button 
+        class="completeButton"
         data-testid="completeButton" 
         data-id="${todo.id}"
         class="${buttonClass}"
-        onClick="updateStatus(${todo.id},${todo.isComplete})">${completedToDO}</button></td>
+        onClick="updateStatus(${todo.id},${todo.isComplete}, event)">${completedToDO}</button></td>
         <td><button data-testid="deleteButton" onClick="deleteToDo(${todo.id})">DELETE</button></td>
       </tr>
     `)
@@ -86,14 +87,16 @@ function deleteToDo( id ){
   });
 }
 
-function updateStatus( id , status ){
+function updateStatus( id , status , event ){
 console.log("in update to-do Status")
-let button = document.getElementById(`[id="completeButton"]`)
-console.log(button)
+// got some help from phind to consider the event.target as a button
+let button = event.target;
+
+ console.log(button)
 if (button.textContent === "Complete") {
 // If it's "Complete", change it to "NOT DONE" and set color to red
   button.textContent = "NOT DONE"
-  button.classList.remove('green') 
+  button.classList.remove('completed') 
   button.classList.add('red')  
 // Set status to false 
   status = false 
@@ -101,13 +104,13 @@ if (button.textContent === "Complete") {
 // If it's "NOT DONE", change it to "Complete" and set color to green
   button.textContent = "Complete"
   button.classList.remove('red')
-  button.classList.add('green')
+  button.classList.add('completed')
 // Set status to true 
   status = true; 
 }
 const toDoToSend = {
   id: id,
-  newStatus: status
+  isComplete: status
 };
 // Send the new artist to the server as data
 axios({
